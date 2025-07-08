@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Book Out Solar and Electric</title>
+    <title>Bookout Solar and Electric</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --black: #000000;
@@ -14,20 +15,26 @@
             --gray-medium: #DDDDDD;
             --accent: #0D8BF2;
             --transition: all 0.3s ease;
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 15px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif; /* Changed font to Inter */
         }
 
         body {
             background-color: var(--white);
             color: var(--black-light);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7; /* Slightly increased line height for readability */
+            font-size: 16px;
         }
 
         header {
@@ -36,33 +43,34 @@
             left: 0;
             width: 100%;
             background: var(--black);
-            padding: 20px;
+            padding: 15px 20px; /* Adjusted padding */
             display: flex;
             justify-content: flex-end;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-medium); /* Added more prominent shadow */
         }
 
         .menu-btn {
             background: var(--white);
             color: var(--black);
             border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
+            border-radius: var(--border-radius-md); /* Slightly rounded corners */
+            width: 55px; /* Slightly larger */
+            height: 55px; /* Slightly larger */
+            font-size: 1.6rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-light); /* Softer shadow */
         }
 
         .menu-btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px); /* Subtle lift */
             background: var(--gray-medium);
             color: var(--black);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
         }
 
         .overlay {
@@ -78,7 +86,7 @@
             z-index: 2000;
             opacity: 0;
             visibility: hidden;
-            transition: var(--transition);
+            transition: opacity 0.4s ease, visibility 0.4s ease; /* More distinct transition */
         }
 
         .overlay.active {
@@ -88,14 +96,14 @@
 
         .overlay-content {
             background: var(--white);
-            border-radius: 15px;
-            padding: 40px;
+            border-radius: var(--border-radius-lg); /* Larger border radius */
+            padding: 50px 40px; /* Increased padding */
             text-align: center;
-            max-width: 500px;
+            max-width: 550px; /* Slightly wider */
             width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(-20px);
-            transition: transform 0.4s ease;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+            transform: translateY(-30px); /* More pronounced initial translateY */
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation */
         }
 
         .overlay.active .overlay-content {
@@ -105,40 +113,42 @@
         .overlay-btn {
             display: block;
             width: 100%;
-            padding: 15px 25px;
-            margin: 15px 0;
-            font-size: 1.2rem;
+            padding: 18px 25px; /* More padding */
+            margin: 18px 0; /* More margin */
+            font-size: 1.3rem; /* Slightly larger font */
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius-md); /* Consistent border radius */
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
             color: var(--white);
             background: var(--black);
+            position: relative;
+            overflow: hidden;
         }
 
         .overlay-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px); /* More pronounced lift */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
             background: var(--black-light);
         }
 
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px; /* Adjusted position */
+            right: 25px; /* Adjusted position */
             background: none;
             border: none;
             color: var(--white);
-            font-size: 2rem;
+            font-size: 2.2rem; /* Slightly larger */
             cursor: pointer;
             transition: var(--transition);
         }
 
         .close-btn:hover {
             color: var(--gray-medium);
-            transform: rotate(90deg);
+            transform: rotate(180deg) scale(1.1); /* More distinct rotation and scale */
         }
 
         .page {
@@ -154,59 +164,77 @@
         .hero {
             background: var(--black);
             color: var(--white);
-            padding: 150px 20px;
-            margin-bottom: 50px;
+            padding: 160px 20px; /* Increased padding */
+            margin-bottom: 60px; /* Increased margin */
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 4rem; /* Larger font size */
+            margin-bottom: 25px; /* Increased margin */
+            font-weight: 700;
+            letter-spacing: -1px; /* Tighter letter spacing */
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
+            font-size: 1.4rem; /* Slightly larger font */
+            max-width: 800px; /* Wider max-width */
+            margin: 0 auto 40px; /* Increased margin */
+            opacity: 0.85; /* Slightly less opaque */
+            font-weight: 300;
         }
 
         .section-title {
             text-align: center;
-            margin: 30px 0 50px;
+            margin: 40px 0 60px; /* Increased margins */
             position: relative;
-            font-size: 2.5rem;
+            font-size: 3rem; /* Larger font size */
+            font-weight: 700;
+            letter-spacing: -0.5px; /* Tighter letter spacing */
+            color: var(--black);
         }
 
         .section-title:after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
+            width: 100px; /* Wider line */
+            height: 5px; /* Thicker line */
             background: var(--black);
-            margin: 15px auto;
-            border-radius: 2px;
+            margin: 20px auto 0; /* More margin */
+            border-radius: 3px; /* Softer edges */
         }
 
         .contact-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 40px; /* Increased gap */
             background: var(--white);
-            border-radius: 15px;
+            border-radius: var(--border-radius-lg); /* Consistent border radius */
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-medium); /* Consistent shadow */
             border: 1px solid var(--gray-medium);
-            max-width: 1200px;
+            max-width: 1000px; /* Slightly smaller max width for a denser feel */
             margin: 0 auto;
         }
 
         .contact-info {
             flex: 1;
-            min-width: 300px;
-            padding: 40px;
+            min-width: 320px; /* Adjusted min-width */
+            padding: 50px; /* Increased padding */
             background: var(--black);
             color: var(--white);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            opacity: 0.9;
+            margin-bottom: 30px;
         }
 
         .contact-details {
@@ -216,45 +244,96 @@
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Increased margin */
         }
 
         .contact-item i {
-            font-size: 1.3rem;
-            margin-right: 15px;
-            margin-top: 5px;
+            font-size: 1.5rem; /* Larger icon */
+            margin-right: 20px; /* More spacing */
+            margin-top: 3px;
             color: var(--accent);
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0;
         }
 
         footer {
             background: var(--black);
             color: var(--white);
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px; /* Increased padding */
         }
 
         .copyright {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.7;
+            margin-top: 25px; /* Increased margin */
+            padding-top: 25px; /* Increased padding */
+            border-top: 1px solid rgba(255,255,255,0.15); /* Slightly more visible border */
+            opacity: 0.8; /* Slightly less opaque */
+            font-size: 0.95rem;
         }
 
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero {
-                padding: 100px 20px;
+                padding: 120px 20px;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .contact-container {
                 flex-direction: column;
+            }
+
+            .contact-info {
+                padding: 40px;
+            }
+
+            .overlay-content {
+                padding: 40px 30px;
+            }
+
+            .overlay-btn {
+                padding: 15px 20px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+                margin: 30px 0 40px;
+            }
+            .contact-info h3 {
+                font-size: 1.8rem;
+            }
+            .menu-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            .close-btn {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -274,14 +353,14 @@
 
     <div id="home" class="page active">
         <div class="hero">
-            <h1>Book Out Solar and Electric</h1>
-            <p>Professional solar and electrical services</p>
+            <h1>Bookout Solar and Electric</h1>
+            <p>Professional solar and electrical services for a brighter future.</p>
         </div>
         
         <div class="services">
             <h2 class="section-title">Our Services</h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p>We provide solar installation and electrical services. Contact us for more information about how we can meet your energy needs.</p>
+            <div style="max-width: 800px; margin: 0 auto 80px; text-align: center; padding: 0 20px;">
+                <p style="font-size: 1.1rem; color: var(--black-light);">We provide comprehensive solar installation and electrical services for residential and commercial clients. Our expert team ensures efficient, reliable, and sustainable energy solutions tailored to your needs. Contact us today for a consultation and learn how we can empower your home or business with clean energy.</p>
             </div>
         </div>
     </div>
@@ -291,7 +370,7 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h3>Get In Touch</h3>
-                <p>Contact us for solar and electrical service inquiries</p>
+                <p>Have questions about solar or electrical services? Reach out to us. We're here to help.</p>
                 <div class="contact-details">
                     <div class="contact-item">
                         <i class="fas fa-phone-alt"></i>
@@ -307,14 +386,14 @@
                             <p>[Your business email]</p>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
     <footer>
         <div class="copyright">
-            <p>&copy; 2025 Book Out Solar and Electric. All rights reserved.</p>
+            <p>&copy; 2025 Bookout Solar and Electric. All rights reserved.</p>
         </div>
     </footer>
 
